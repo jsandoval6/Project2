@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Student Registration</title>
+    <script src="./scripts/model.js" type="text/javascript"></script>
+    <script src="./scripts/controller.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="./css/formStyle.css">
+    <link rel="stylesheet" href="./css/registrationStyle.css">
+
+</head>
+
+<body>
+    <div id="studentEditArea">
+        <h1 id="formTitle"></h1>
+        <form name="editForm">
+            <!-- <table border="1" cellspacing="3" cellpadding="3"> -->
+            <section class="row">
+                <div>First Name:</div>
+                <div><input type="text" name="firstNameEdit" placeholder="Tom" /></div>
+                <div id="firstNameError" class="errorMessage">&nbsp;</div>
+            </section>
+            <section class="row">
+                <div>Last Name:</div>
+                <div><input type="text" name="lastNameEdit" placeholder="Cruise" /></div>
+                <div id="lastNameError" class="errorMessage">&nbsp;</div>
+            </section>
+            <section class="row">
+                <div>Gender:</div>
+                <div class="genderRadio">
+                    <label><input type="radio" name="gender" value="male" id="genderMaleRadio" />Male</label>
+                    <label><input type="radio" name="gender" value="female" id="genderFemaleRadio" />Female</label>
+                </div>
+                <div id="genderError" class="errorMessage">&nbsp;</div>
+            </section>
+            <section class="row">
+                <div>UVU ID:</div>
+                <div><input type="text" name="uvuIdEdit" /></div>
+                <div id="uvuIdError" class="errorMessage">&nbsp;</div>
+            </section>
+            <section class="row">
+                <div>Race:</div>
+                <div>
+                    <select name="raceSelect">
+                        <option value="caucasian">Caucasian</option>
+                        <option value="black">Black</option>
+                        <option value="hispanic">Hispanic</option>
+                        <option value="asian">Asian</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div id="raceError" class="errorMessage">&nbsp;</div>
+            </section>
+            <section class="row">
+                <div>Age:</div>
+
+                <div><input type="text" name="ageEdit" /></div>
+
+                <div id="ageError" class="errorMessage">&nbsp;</div>
+            </section>
+            <section class="row">
+                <div>&nbsp;</div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="isVeteran" />
+                        Are you a US veteran?
+                    </label>
+                </div>
+                <div>&nbsp;</div>
+            </section>
+            <section class="row">
+
+                <div>
+                    <button type="button" id="createBtn">Create</button>
+                </div>
+
+                <div>
+                    <button type="button" id="cancelBtn">Cancel</button>
+                </div>
+            </section>
+            <!-- </table> -->
+        </form>
+    </div>
+    <div id="studentListArea">
+        <h1>Student Registration</h1>
+        <button type="button" id="newBtn">New Student</button>
+        <section id="studentTable">
+            <div class="registration-row table-header">
+                <div>UVU ID</div>
+                <div>Name</div>
+                <div>Gender</div>
+                <div>&nbsp;</div>
+            </div>
+        </section>
+    </div>
+    <script>
+        //add some text data to the model
+        modelCreateStudent("Denzel", "Washington", true, 112233444, "black", 23);
+        modelCreateStudent("Tom", "Cruise", true, 882233444, "caucassian", 32);
+        modelCreateStudent("Jackie", "Chan", true, 332233444, "asian", 42);
+        modelCreateStudent("Jenniffer", "Lopez", false, 552233444, "hispanic", 32);
+        //initialize all the controller
+        onPageLoad();
+
+    </script>
+</body>
+
+</html>

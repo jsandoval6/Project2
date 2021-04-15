@@ -1,0 +1,88 @@
+ *{
+     box-sizing: border-box;
+     font-family: sans-serif;
+     
+ }
+ 
+#studentEditArea{
+    width: fit-content;
+    margin: 5px auto;
+    letter-spacing: 1.5px;
+}
+
+ form{
+    width: fit-content;
+    
+}
+
+#formTitle{
+    font-weight: 400;
+    text-align: center;
+}
+
+.row{
+    display: flex;
+    /* justify-content: space-between; */
+
+}
+
+.row div{
+    margin: 5px;
+} 
+
+.row div input[type="text"], .row div select{
+    width: 400px;
+    height: 30px;
+    border:1px solid grey;
+    border-radius: 3px;
+    padding: 5px;
+    text-transform: capitalize;
+}
+.row div:first-child{
+    width: 100px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 500;
+}
+.genderRadio{
+    width:400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: rgb(51, 49, 49);
+}
+
+.genderRadio label{
+margin-top: 5px;
+}
+#createBtn{
+background-color:  #698eb8;
+color:#fff;}
+
+#cancelBtn{
+    background-color: #ffc477;
+    color: #fff;
+}
+#createBtn, #cancelBtn{
+height: 35px;
+border-radius: 5px;
+border:0.5px solid grey;
+transition: 0.5s background-color;
+cursor: pointer;
+outline: none;
+letter-spacing: 0.5px;
+}
+
+#createBtn:hover{
+    background-color:  #113861;
+}
+
+#cancelBtn:hover{
+    background-color: #dda255;
+
+}
+
+.errorMessage{
+    color: red;
+}
+
