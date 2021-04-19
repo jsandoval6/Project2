@@ -43,12 +43,16 @@ function onNewBtnClicked() {
 
     document.getElementById("studentEditArea").style.display = "block";
     document.getElementById("studentListArea").style.display = "none";
+    document.getElementById("createBtn").style.display = "inline";
+
+    document.getElementById("updateBtn").style.display = "none";
 }
 
 function addTableItems(student) {
     let table = document.getElementById("studentTable");
     let row = document.createElement("div");
-    let remove = document.createElement("button");
+    let removeBtn = document.createElement("button");
+    let editBtn = document.createElement('button');
 
     row.id = 'row' + student.id;
     row.className = "registration-row";
@@ -57,14 +61,21 @@ function addTableItems(student) {
     for (let cell of cells) {
         row.innerHTML += `<div> ${cell} </div>`
     }
-
-    remove.innerText = "Delete";
-    remove.className = "removeBtn";
-    remove.onclick = function () {
-        Remove(this);
+    editBtn.innerText = "Edit";
+    editBtn.className = 'editBtn';
+    editBtn.type = "button";
+    editBtn.onclick = function () {
+        onEditBtnClicked(student.id);
     }
 
-    row.append(remove);
+    removeBtn.type = "button";
+    removeBtn.innerText = "Delete";
+    removeBtn.className = "removeBtn";
+    removeBtn.onclick = function () {
+        onDeleteBtnClicked(this, student);
+    }
+    row.append(editBtn);
+    row.append(removeBtn);
     table.append(row);
 
 }
@@ -171,8 +182,72 @@ function clearInputForm() {
     form.isVeteran.checked = false;
 }
 
-function Remove(btn) {
-    let parentRow = btn.parentNode;
-    parentRow.parentNode.removeChild(parentRow);
+function onDeleteBtnClicked(btn, { firstName, lastName, id }) {
+    let prompt = confirm("Are you sure you want to delete " + firstName + ", " + lastName + '?');
+    if (prompt) {
+        let parentRow = btn.parentNode;
+        parentRow.parentNode.removeChild(parentRow);
+        DeleteItem(id);
+    }
+
 }
 
+function onEditBtnClicked(id) {
+
+    let student = GetItemById(id);
+    if (!student) {
+        alert("unable to find student ID: " + id);
+    }
+    document.getElementById("formTitle").innerText = "Edit Student";
+    let form = document.forms["editForm"];
+    form.firstNameEdit.value = student.firstName;
+    form.lastNameEdit.value = student.lastName;
+    if (student.male) {
+        document.getElementById('genderMaleRadio').checked = true;
+    }
+    else {
+        document.getElementById('genderFemaleRadio').checked = true;
+    }
+    form.uvuIdEdit.value = student.uvuId;
+    form.raceSelect.value = student.race;
+    form.ageEdit.value = student.age;
+    form.isVeteran.checked = student.isVeteran ? true : false;
+    document.getElementById("studentEditArea").style.display = "block";
+    document.getElementById("studentListArea").style.display = "none";
+    document.getElementById("createBtn").style.display = "none";
+
+    let updateBtn = document.getElementById("updateBtn");
+    updateBtn.style.display = "inline";
+    updateBtn.onclick = function () {
+        onUpdateBtnClicked(student.id);
+    }
+}
+
+function onUpdateBtnClicked(id) {
+    if (!valadateControls()) {
+        return;
+    }
+    let form = document.forms["editForm"];
+    let student = UpdateItem(
+        id,
+        form.firstNameEdit.value,
+        form.lastNameEdit.value,
+        form.genderMaleRadio.checked,
+        parseInt(form.uvuIdEdit.value),
+        form.raceSelect.value,
+        parseInt(form.ageEdit.value),
+        form.isVeteran.checked
+    );
+
+    if (!student) {
+        alert("Unable to update student ID = " + id);
+        return;
+    }
+    //update row in table
+    let tr = document.getElementById("row" + id);
+    tr.childNodes[0].innerText = student.uvuId;
+    tr.childNodes[1].innerText = student.sortableName();
+    tr.childNodes[2].innerText = student.male ? "Male" : "Female";
+    //reset the form;
+    clearInputForm();
+}

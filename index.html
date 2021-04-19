@@ -28,7 +28,7 @@
             </section>
             <section class="row">
                 <div>Gender:</div>
-                <div class="genderRadio">
+                <div class="genderRadio" name="generRadio">
                     <label><input type="radio" name="gender" value="male" id="genderMaleRadio" />Male</label>
                     <label><input type="radio" name="gender" value="female" id="genderFemaleRadio" />Female</label>
                 </div>
@@ -72,6 +72,7 @@
             <section class="row">
 
                 <div>
+                    <button type='button' id="updateBtn">Save</button>
                     <button type="button" id="createBtn">Create</button>
                 </div>
 
@@ -96,10 +97,10 @@
     </div>
     <script>
         //add some text data to the model
-        modelCreateStudent("Denzel", "Washington", true, 112233444, "black", 23);
-        modelCreateStudent("Tom", "Cruise", true, 882233444, "caucassian", 32);
-        modelCreateStudent("Jackie", "Chan", true, 332233444, "asian", 42);
-        modelCreateStudent("Jenniffer", "Lopez", false, 552233444, "hispanic", 32);
+        modelCreateStudent("Denzel", "Washington", true, 11223344, "black", 23);
+        modelCreateStudent("Tom", "Cruise", true, 88223344, "caucasian", 32);
+        modelCreateStudent("Jackie", "Chan", true, 33223344, "asian", 42);
+        modelCreateStudent("Jenniffer", "Lopez", false, 55233444, "hispanic", 32);
         //initialize all the controller
         onPageLoad();
 

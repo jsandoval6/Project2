@@ -55,7 +55,7 @@
 .genderRadio label{
 margin-top: 5px;
 }
-#createBtn{
+#createBtn, #updateBtn{
 background-color:  #698eb8;
 color:#fff;}
 
@@ -63,7 +63,7 @@ color:#fff;}
     background-color: #ffc477;
     color: #fff;
 }
-#createBtn, #cancelBtn{
+#createBtn, #cancelBtn, #updateBtn{
 height: 35px;
 border-radius: 5px;
 border:0.5px solid grey;
@@ -73,7 +73,7 @@ outline: none;
 letter-spacing: 0.5px;
 }
 
-#createBtn:hover{
+#createBtn:hover, #updateBtn:hover{
     background-color:  #113861;
 }
 
